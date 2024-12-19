@@ -1,17 +1,18 @@
 import React, { ChangeEvent, useState } from "react";
-
-interface FilterData {
-  [key: string]: string;
-}
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const filterFields = [
-  { name: "name", type: "text", placeholder: "Name" },
-  { name: "amount", type: "number", placeholder: "Amount" },
-  { name: "date", type: "date", placeholder: "Date" },
+  { name: "product_name", type: "text", placeholder: "Name" },
+  { name: "order_amount", type: "number", placeholder: "Amount" },
+  { name: "order_date", type: "date", placeholder: "Date" },
 ];
 
-function Filter({ onFilter }: { onFilter: (data: FilterData) => void }) {
-  const [filteredData, setFilteredData] = useState<FilterData>(
+function Filter({
+  onFilter,
+}: {
+  onFilter: (data: { [key: string]: string }) => void;
+}) {
+  const [filteredData, setFilteredData] = useState<{ [key: string]: string }>(
     filterFields.reduce((acc, field) => ({ ...acc, [field.name]: "" }), {})
   );
 
@@ -26,17 +27,24 @@ function Filter({ onFilter }: { onFilter: (data: FilterData) => void }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="filter">
-      {filterFields.map(({ name, type, placeholder }) => (
-        <input
-          key={name}
-          name={name}
-          type={type}
-          placeholder={placeholder}
-          onChange={handleChange}
-        ></input>
-      ))}
-      <button type="submit">Filter</button>
+    <form onSubmit={handleSubmit} className="filter container">
+      <div className="row">
+        {filterFields.map(({ name, type, placeholder }) => (
+          <div className="col">
+            <input
+              className="form-control"
+              key={name}
+              name={name}
+              type={type}
+              placeholder={placeholder}
+              onChange={handleChange}
+            ></input>
+          </div>
+        ))}
+        <button type="submit" className="col btn btn-primary">
+          Filter
+        </button>
+      </div>
     </form>
   );
 }
