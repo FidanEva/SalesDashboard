@@ -49,7 +49,7 @@ function Statistics({ data }: { data: Order[] }) {
       labels: Object.keys(salesByDate),
       datasets: [
         {
-          label: "Sales ount",
+          label: "Sales Count",
           data: Object.values(salesByDate),
           borderColor: "orange",
           backgroundColor: "rgba(255, 165, 0, 0.5)",
@@ -60,16 +60,14 @@ function Statistics({ data }: { data: Order[] }) {
     return (
       <div className="container border">
         <div className="row justify-content-center">
-          <div className="">
-            <h3 className="">Statistics</h3>
-            <h5>
-              The Most Saled Product:{" "}
-              <strong>{maxSaledProduct.product_name}</strong>
-            </h5>
-            <h5>
-              The Most Saled Date: <strong>{mostSaledDate.date}</strong>
-            </h5>
-          </div>
+          <h3>Statistics</h3>
+          <h5>
+            The Most Saled Product:{" "}
+            <strong>{maxSaledProduct.product_name}</strong>
+          </h5>
+          <h5>
+            The Most Saled Date: <strong>{mostSaledDate.date}</strong>
+          </h5>
         </div>
         <div className="row justify-content-center">
           <div className="col-md-12">
